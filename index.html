@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>m3u playlists</title>
+    <script type="text/javascript" src="public/js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="public/js/popper.min.js"></script>
+    <script type="text/javascript" src="public/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="public/js/main.js"></script>
+    <link rel="stylesheet" href="public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="public/css/main.css?1">
+</head>
+
+<body style="min-height: 100vh; display: flex;flex-direction: column;">
+
+    <header class="container-fluid">
+        <div class="row justify-content-md-center">
+            <div class="col-sm">
+                <h1 style="text-align: center;">m3u list editor</h1>
+                <hr>
+            </div>
+        </div>
+    </header>
+
+    <content class="container-fluid" style="flex:1;">
+        <div class="row justify-content-md-center">
+            <p class="p-3">Выберите нужные каналы из стримминг сервисов слева кликом на галочку. Они появятся в правом
+                блоке для вашего плейлиста. Далее нажмите "Сохранить" и скачайте готовый m3u файл :)</p>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col-12 order-2 order-sm-1 order-md-1 order-lg-1 order-xl-1 col-sm-6 col-md-7 col-lg-7 col-xl-8">
+                <div class="row">
+                    <div class="col-sm">
+                        <h4 style="text-align: center;">Список стрим сервисов</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <div id="accordion" class="chanelsList container-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 order-1 order-sm-2 order-md-2 order-lg-2 order-xl-2 col-sm-6 col-md-5 col-lg-5 col-xl-4">
+                <div class="row sticky-top">
+                    <div class="col">
+                        <div class="row justify-content-md-center">
+                            <div class="col-sm">
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <h4>Ваш список</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm">
+
+                                        <button data-toggle="tooltip" data-trigger="manual" data-placement="bottom"
+                                            title="Сначала добавьте каналы" type="button" id="savechanels"
+                                            class="btn btn-primary">Сохнанить</button>
+
+                                        <button type="button" id="clearallchanels" class="btn btn-danger">Очистить
+                                            всё</button>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="row justify-content-md-center">
+                            <div class="col-sm chanelAdded">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </content>
+
+    <footer class="container-fluid">
+        <div class="row justify-content-md-center">
+            <div class="col-sm">
+                <hr>
+                <h1 style="text-align: center;">by Ras FANtasy</h1>
+            </div>
+        </div>
+    </footer>
+
+</body>
+<script>
+
+</script>
+
+</html>
