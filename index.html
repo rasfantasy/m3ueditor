@@ -6,12 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>m3u playlists</title>
+    <script type="text/javascript" src="public/js/Sortable.min.js"></script>
     <script type="text/javascript" src="public/js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="public/js/popper.min.js"></script>
     <script type="text/javascript" src="public/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="public/js/jquery-sortable.js"></script>
+    <script type="text/javascript" src="public/js/jquery.searchable-1.1.0.min.js"></script>
     <script type="text/javascript" src="public/js/main.js"></script>
     <link rel="stylesheet" href="public/css/bootstrap.min.css">
-    <link rel="stylesheet" href="public/css/main.css?1">
+    <link rel="stylesheet" href="public/css/main.css?2">
 </head>
 
 <body style="min-height: 100vh; display: flex;flex-direction: column;">
@@ -37,6 +40,7 @@
                         <h4 style="text-align: center;">Список стрим сервисов</h4>
                     </div>
                 </div>
+                
                 <div class="row">
                     <div class="col-sm">
                         <div id="accordion" class="chanelsList container-fluid">
@@ -56,11 +60,9 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm">
-
                                         <button data-toggle="tooltip" data-trigger="manual" data-placement="bottom"
                                             title="Сначала добавьте каналы" type="button" id="savechanels"
-                                            class="btn btn-primary">Сохнанить</button>
-
+                                            class="btn btn-primary">Сохранить</button>
                                         <button type="button" id="clearallchanels" class="btn btn-danger">Очистить
                                             всё</button>
                                     </div>
@@ -68,7 +70,7 @@
                                 <hr>
                             </div>
                         </div>
-                        <div class="row justify-content-md-center">
+                        <div class="row justify-content-md-center chanelContainer">
                             <div class="col-sm chanelAdded">
 
                             </div>

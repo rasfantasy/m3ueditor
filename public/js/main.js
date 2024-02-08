@@ -10,7 +10,7 @@ $(document).ready(function () {
 	function getChanels() {
 		$.ajax({
 			url: 'https://raw.githubusercontent.com/Dimonovich/TV/Dimonovich/FREE/TV',
-			method: 'get',   
+			method: 'get',
 			dataType: 'text',
 			success: function (data) {
 				chanelsList = parseChanels(data);
@@ -102,15 +102,23 @@ $(document).ready(function () {
 			groups[checkGroup][1].push(chanelsList[i]);
 		}
 
-		let html = "";
+		//let html = "";
 		for (let i = 0; i < groups.length - 1; i++) {
-			html += `
-			<div class="card container-fluid">
+
+			let html = `
+			<div class="card ">
 				<div class="card-header" id="heading${i}">
 			  		<h5 class="mb-0">
-						<button class="btn btn-link" data-toggle="collapse" data-target="#collapse${i}" aria-expanded="true" aria-controls="collapse${i}">
-				  			${groups[i][0]['title']}
-						</button>
+					  	<div class="row">
+							<div class="col-12 col-sm-12 col-md-5 col-lg-4 col-xl-3">
+								<button class="btn btn-link" data-toggle="collapse" data-target="#collapse${i}" aria-expanded="true" aria-controls="collapse${i}">
+									${groups[i][0]['title']}
+								</button>
+							</div>
+							<div class="col-12 col-sm-12 col-md-7 col-lg-8 col-xl-9">
+								<input type="search" id="container-search${i}" value="" class="form-control" placeholder="Поиск...">
+							</div>
+				  		</div>
 			  		</h5>
 				</div>
 				<div id="collapse${i}" class="collapse" aria-labelledby="heading${i}" data-parent="#accordion">
@@ -140,12 +148,44 @@ $(document).ready(function () {
 				`;
 			}
 			html += "</div></div></div>";
+			container.append(html);
+
+			$( '#collapse'+i ).searchable({
+				searchField: '#container-search'+i,
+				selector: '.card',
+				childSelector: '.card-title',
+				show: function( elem ) {
+					elem.slideDown(100);
+				},
+				hide: function( elem ) {
+					elem.slideUp( 100 );
+				}
+			})
+
 		}
-		container.append(html);
+		
 		addedList = getCookie("chanelsList");
 		checkChanelsWithLoad();
 		renderChanelsAdded();
+
+		$('.chanelAdded').sortable({
+			handle: '.handleDragable',
+			group: 'list',
+			animation: 200,
+			ghostClass: 'ghost',
+			onSort: reportActivity,
+		});
+
+	
+
 	}
+
+	// Report when the sort order has changed
+	function reportActivity() {
+		let sort1 = $('.chanelAdded').sortable('toArray');
+		let newList = sort1.toString().replaceAll(",", "|");
+		addedList = newList+"|";
+	};
 
 	function checkChanelsWithLoad() {
 		let chanelsArray = addedList.split("|");
@@ -225,10 +265,11 @@ $(document).ready(function () {
 			let j = index[1];
 			logoURL = groups[i][1][j]['chanel-logo'];
 			if (logoURL == undefined) {
-				logoURL = "https://static-00.iconduck.com/assets.00/no-image-icon-256x256-blc2175p.png";
+				logoURL = "public/img/imgerror.webp";
 			}
 			html += `
-			<div class="alert alert-warning alert-dismissible fade show" role="alert">
+			<div class="alert alert-warning alert-dismissible fade show" role="alert" data-id="${i}_${j}">
+				<span class="handleDragable">&Xi;</span>
 				<img style="min-width: 32px; min-height: 32px; max-width:32px; max-height:32px; object-fit: cover; margin: 0 auto;" class="card-img-top" src="${logoURL}" alt="asd"> 
 				<strong>${groups[i][1][j]['chanel-name']}</strong> (${groups[i][1][j]['chanel-title']})
 				<button type="button" class="close" data-source="${i}_${j}" data-dismiss="alert" aria-label="Close">

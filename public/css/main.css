@@ -1,0 +1,56 @@
+#accordion {
+    max-height: 65vh;
+    overflow-y: auto;
+}
+
+.chanelAdded {
+    max-height: 59vh;
+    overflow-y: auto;
+}
+
+.card-header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0px;
+    z-index: 1;
+    background-color: #ffefef;
+}
+
+.handleDragable {
+    cursor: grab;
+    padding-right: 10px;
+}
+
+*::-webkit-scrollbar {
+    width: 16px;
+}
+
+*::-webkit-scrollbar-track {
+    border-radius: 8px;
+    background-color: #e7e7e7;
+    border: 1px solid #cacaca;
+}
+
+*::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+    background-color: #fff3cd;
+}
+
+@media only screen and (max-width: 575px) {
+    .chanelContainer {
+        max-height: none;
+        overflow-y: none;
+    }
+
+    .chanelAdded {
+        max-height: 50vh;
+        overflow-y: auto;
+    }
+
+    #accordion {
+        max-height: 50vh;
+        overflow-y: auto;
+    }
+}
