@@ -150,20 +150,20 @@ $(document).ready(function () {
 			html += "</div></div></div>";
 			container.append(html);
 
-			$( '#collapse'+i ).searchable({
-				searchField: '#container-search'+i,
+			$('#collapse' + i).searchable({
+				searchField: '#container-search' + i,
 				selector: '.card',
 				childSelector: '.card-title',
-				show: function( elem ) {
+				show: function (elem) {
 					elem.slideDown(100);
 				},
-				hide: function( elem ) {
-					elem.slideUp( 100 );
+				hide: function (elem) {
+					elem.slideUp(100);
 				}
 			})
 
 		}
-		
+
 		addedList = getCookie("chanelsList");
 		checkChanelsWithLoad();
 		renderChanelsAdded();
@@ -176,7 +176,7 @@ $(document).ready(function () {
 			onSort: reportActivity,
 		});
 
-	
+
 
 	}
 
@@ -184,7 +184,7 @@ $(document).ready(function () {
 	function reportActivity() {
 		let sort1 = $('.chanelAdded').sortable('toArray');
 		let newList = sort1.toString().replaceAll(",", "|");
-		addedList = newList+"|";
+		addedList = newList + "|";
 	};
 
 	function checkChanelsWithLoad() {
@@ -263,11 +263,12 @@ $(document).ready(function () {
 			let index = chanelsArray[x].split("_");
 			let i = index[0];
 			let j = index[1];
-			logoURL = groups[i][1][j]['chanel-logo'];
-			if (logoURL == undefined) {
-				logoURL = "public/img/imgerror.webp";
-			}
-			html += `
+			if (groups[i][1][j] != undefined) {
+				logoURL = groups[i][1][j]['chanel-logo'];
+				if (logoURL == undefined) {
+					logoURL = "public/img/imgerror.webp";
+				}
+				html += `
 			<div class="alert alert-warning alert-dismissible fade show" role="alert" data-id="${i}_${j}">
 				<span class="handleDragable">&Xi;</span>
 				<img style="min-width: 32px; min-height: 32px; max-width:32px; max-height:32px; object-fit: cover; margin: 0 auto;" class="card-img-top" src="${logoURL}" alt="asd"> 
@@ -277,6 +278,7 @@ $(document).ready(function () {
 				</button>
 		  	</div>
 			`;
+			}
 		}
 		$('.chanelAdded').html(html);
 	}
